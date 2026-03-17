@@ -1,0 +1,11 @@
+services:
+  aura:
+    build: .
+    image: aura-agent:latest
+    container_name: aura-intelligent-agent
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
