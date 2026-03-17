@@ -26,11 +26,12 @@ class Agent:
             agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
             verbose=True,
             handle_parsing_errors=True,
-            max_iterations=3,
+            max_iterations=5,
             early_stopping_method="generate",
             agent_kwargs={
                 "prefix": self.prompt,
-                "format_instructions": "Use this exact format:\nThought: what to do\nAction: Calculator\nAction Input: number operation number\nObservation: result\nFinal Answer: answer"
+                "suffix": "Begin! Remember to respond with 'Final Answer: [your answer]' when you have the result.\n\nQuestion: {input}\n{agent_scratchpad}",
+                "format_instructions": "Use this format:\n\nThought: think about what to do\nAction: Calculator\nAction Input: number operation number\nObservation: the result\n... (repeat Thought/Action/Observation if needed)\nThought: I now have the final result\nFinal Answer: the final answer to the user"
             }
         )
         return self

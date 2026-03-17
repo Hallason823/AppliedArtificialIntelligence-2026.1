@@ -22,7 +22,11 @@ GROQ_API_KEY=your_actual_api_key_here
 ## Running with Docker (Recommended)
 
 ```bash
-docker-compose up --build
+# Build and start the container
+docker-compose up --build -d
+
+# Access the interactive agent
+docker exec -it aura-intelligent-agent python main.py
 ```
 
 ## Running Locally
@@ -47,5 +51,5 @@ Exit: `exit` or `quit`
 ## Stack
 
 - LangChain (ReAct agent framework)
-- Groq API (llama3-groq-8b-8192-tool-use-preview)
+- Groq API (llama-3.3-70b-versatile)
 - Python 3.12
