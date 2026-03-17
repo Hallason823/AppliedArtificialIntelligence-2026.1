@@ -28,4 +28,4 @@ Exit: `exit`
 
 ## Stack
 
-LangChain + Hugging Face (`google/flan-t5-small`) + PyTorch
+LangChain + Hugging Face (`deepseek-ai/DeepSeek-R1-Distill-Qwen-14B`) + PyTorch

@@ -1,17 +1,19 @@
-from langchain_community.llms import HuggingFacePipeline
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
-import torch
+from langchain_groq import ChatGroq
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class LLM:
-    def __init__(self, model_name: str = "Qwen/Qwen2.5-3B-Instruct"):
+    def __init__(self, model_name: str = "llama3-groq-8b-8192-tool-use-preview"):
         self.model_name = model_name
         self.llm = None
 
     def load_model(self):
-        tokenizer = AutoTokenizer.from_pretrained(self.model_name)
-        model = AutoModelForCausalLM.from_pretrained(self.model_name, device_map="auto", dtype=torch.float32)
-        pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=256)
-        self.llm = HuggingFacePipeline(pipeline=pipe)
+        api_key = os.getenv("GROQ_API_KEY")
+        if not api_key:
+            raise ValueError("GROQ_API_KEY not found in environment variables. Get one at https://console.groq.com/")
+        self.llm = ChatGroq(model=self.model_name, temperature=0.1, groq_api_key=api_key)
         return self.llm
 
     def get_llm(self):
