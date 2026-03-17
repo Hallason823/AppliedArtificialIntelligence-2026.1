@@ -1,8 +1,31 @@
 # AURA - Intelligent Agent
 
-LangChain agent with LLM + tool Calculator.
+LangChain ReAct agent with Groq API and Calculator tool.
 
-## Installation
+## Prerequisites
+
+Get a free API key from https://console.groq.com/keys
+
+## Setup
+
+1. Clone and configure environment:
+```bash
+cd projects/aura
+cp .env.example .env
+```
+
+2. Edit `.env` and add your Groq API key:
+```
+GROQ_API_KEY=your_actual_api_key_here
+```
+
+## Running with Docker (Recommended)
+
+```bash
+docker-compose up --build
+```
+
+## Running Locally
 
 ```bash
 python3 -m venv venv
@@ -11,21 +34,18 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## Docker
-
-```bash
-docker-compose up
-```
-
-## Usage
+## Usage Examples
 
 ```
 You: Calculate 15 plus 25
+You: What is 100 divided by 4?
 You: What is artificial intelligence?
 ```
 
-Exit: `exit`
+Exit: `exit` or `quit`
 
 ## Stack
 
-LangChain + Hugging Face (`deepseek-ai/DeepSeek-R1-Distill-Qwen-14B`) + PyTorch
+- LangChain (ReAct agent framework)
+- Groq API (llama3-groq-8b-8192-tool-use-preview)
+- Python 3.12
